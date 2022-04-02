@@ -1,7 +1,5 @@
 # **Dumb parser**
 
----
-
 Parser gets content from the declared `URL`,
 clears it from HTML tags and JS code then 
 allows you to do dumb things with the raw 
