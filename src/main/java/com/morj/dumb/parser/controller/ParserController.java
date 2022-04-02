@@ -16,6 +16,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @RequestMapping("/")
 public class ParserController {
+    //todo: get the content of the html NODE
     private final SimpleClient simpleClient;
     private final PageParser parser;
 
