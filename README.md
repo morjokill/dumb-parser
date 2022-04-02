@@ -8,7 +8,7 @@ text left after clearing
 ---
 
 **API:** <br>
-- `/page?url=` - RAW page with all HTML and JS, not 
+- `/page?url=` - raw page with all HTML and JS, not 
 filtered. Practically `wget`
 - `/content?url=` - page filtered from HTML and JS
 - `/sort?url=` - sorts filtered page by characters 
