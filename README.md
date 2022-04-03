@@ -18,3 +18,5 @@ and counts the amount of character's occurrences
 - `/find?url=&word=` - counts amount of occurrences of the 
 word and returns all the places word was found
 in
+- `/tag?url=&tag=` - returns text content from specified 
+tag name
