@@ -45,4 +45,10 @@ public class ParserController {
                              @RequestParam("word") String word) {
         return parser.findWord(url, word);
     }
+
+    @GetMapping("/tag")
+    public String tag(@RequestParam("url") String url,
+                      @RequestParam("tag") String tag) {
+        return parser.getTag(url, tag);
+    }
 }

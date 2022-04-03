@@ -6,10 +6,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -41,10 +41,10 @@ public class PageParser {
             return WordFoundDto.empty(word);
         }
         String pageContent = getPageContent(url);
+        word = word.strip();
         if (!pageContent.contains(word)) {
             return WordFoundDto.empty(word);
         }
-        word = word.strip();
         StringBuilder builder = new StringBuilder(pageContent);
         long count = 0;
         List<String> entries = new ArrayList<>();
@@ -57,11 +57,27 @@ public class PageParser {
         return new WordFoundDto(word, count, entries);
     }
 
+    public String getTag(String url, String tag) {
+        Document document = getPageDocument(url);
+        Elements elements = document.getElementsByTag(tag);
+        String result = "";
+        if (elements.size() > 0) {
+            return elements.text();
+        }
+        return result;
+    }
+
     @SneakyThrows
     public String getPageContent(String url) {
+        Document document = getPageDocument(url);
+        return document
+                .body()
+                .text();
+    }
+
+    private Document getPageDocument(String url) {
         String page = simpleClient.getPage(url);
-        Document document = Jsoup.parse(page, url);
-        return document.body().text();
+        return Jsoup.parse(page, url);
     }
 
     private static String getEntry(StringBuilder builder, String word, int index) {
