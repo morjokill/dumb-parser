@@ -41,7 +41,7 @@ public class ClientConfig {
 
     @Bean
     @SneakyThrows
-    public List<String> userAgents() {
-        return Files.readAllLines(Path.of("src/main/resources/agents.txt"));
+    public List<String> userAgents(@Value("${user.agents.file}") String path) {
+        return Files.readAllLines(Path.of(path));
     }
 }

@@ -11,6 +11,10 @@ spring:
     host: localhost
     port: 6379
 
+user:
+  agents:
+    file: src/main/resources/agents.txt
+
 ---
 
 spring:
@@ -20,3 +24,7 @@ spring:
   redis:
     host: redis
     port: 6379
+
+user:
+  agents:
+    file: /app/agents.txt
